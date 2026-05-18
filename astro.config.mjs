@@ -1,19 +1,20 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
-import tailwindcss from '@tailwindcss/vite'; // 🚀 This uses your v4 package natively
+import tailwindcss from '@tailwindcss/vite'; 
+import icon from 'astro-icon'; // 🚀 1. Import the icon integration
 
 export default defineConfig({
-  site: 'https://fxTawhid.github.io', // Ensure this is set correctly
-  base: '/astroship',                 // Omit if deploying to your primary username.github.io domain
+  site: 'https://fxTawhid.github.io', // Update with your actual GitHub Pages URL
+  base: '/astroship',                 // Omit if utilizing user root domain
   
   integrations: [
     mdx(), 
-    sitemap()
-    // ❌ REMOVE tailwind() from here entirely
+    sitemap(),
+    icon() // 🚀 2. Add icon() here so Vite can find "virtual:astro-icon"
   ],
   
   vite: {
-    plugins: [tailwindcss()], // 🚀 THIS IS THE CORRECT TAILWIND V4 SETUP
+    plugins: [tailwindcss()],
   },
 });
