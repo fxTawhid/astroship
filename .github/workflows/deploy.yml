@@ -3,11 +3,15 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
+  workflow_dispatch: # Allows manual triggers from the Actions tab
 
 permissions:
   contents: read
   pages: write
   id-token: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # Clears the Node 20 deprecation block cleanly
 
 jobs:
   build:
@@ -19,12 +23,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24 # Upgraded to match future environment requirements
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4 # Upgraded to v4 to clear dependency errors
         with:
-          version: 8
+          version: 9 # Matches modern astro package lock schemas
 
       - name: Install Dependencies
         run: pnpm install --no-frozen-lockfile
@@ -35,14 +39,14 @@ jobs:
       - name: Upload Build Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./dist # Confirms standard Astro static export directory
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: https://github.io
+      url: ${{ steps.deployment.outputs.page_url }} # 🚀 CORRECT SYNTAX (Evaluated post-execution)
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
