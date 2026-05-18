@@ -1,14 +1,10 @@
-import { defineConfig } from "astro/config";
-import tailwindcss from "@tailwindcss/vite";
-import mdx from "@astrojs/mdx";
-import sitemap from "@astrojs/sitemap";
-import icon from "astro-icon";
+import { defineConfig } from 'astro/config';
+import tailwind from '@astrojs/tailwind';
 
-// https://astro.build/config
 export default defineConfig({
-  site: "https://astroship.web3templates.com",
-  integrations: [mdx(), sitemap(), icon()],
-  vite: {
-    plugins: [tailwindcss()],
-  },
+
+  site: 'https://fxTawhid.github.io',
+  base: '/astroship', 
+
+  integrations: [tailwind()],
 });
