@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ] # Triggers every time you update your code
+    branches: [ main ]
 
 permissions:
   contents: read
@@ -16,8 +16,10 @@ jobs:
       - name: Checkout your repository
         uses: actions/checkout@v4
       - name: Install, build, and upload Astro
-        uses: withastro/action@v3 # Official cloud builder tool
-
+        uses: withastro/action@v3
+        with:
+          package-manager: pnpm@latest # Crucial line tells the machine exactly how to read the repo cleanly
+          
   deploy:
     needs: build
     runs-on: ubuntu-latest
