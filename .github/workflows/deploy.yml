@@ -1,32 +1,3 @@
-name: Deploy to GitHub Pages
 
-on:
-  push:
-    branches: [ main ]
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout your repository
-        uses: actions/checkout@v4
-      - name: Install, build, and upload Astro
-        uses: withastro/action@v3
-        with:
-          package-manager: pnpm@latest # Crucial line tells the machine exactly how to read the repo cleanly
-          
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ jobs.build.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+Invalid workflow file: .github/workflows/deploy.yml#L1
+(Line: 28, Col: 12): Unrecognized named-value: 'jobs'. Located at position 1 within expression: jobs.build.outputs.page_url
