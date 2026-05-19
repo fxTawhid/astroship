@@ -3,6 +3,8 @@ import Container from "@/components/container.astro";
 import Link from "@/components/ui/link.astro";
 import Dropdown from "./dropdown.astro";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+import logoImage from "../../assets/logo.png";
+import typefaceImage from "../../assets/typeface.png";
 
 const menuitems = [
   {
@@ -40,8 +42,8 @@ const menuitems = [
       <div class="flex w-full lg:w-auto items-center justify-between">
         <!-- Rebranded Vertex Systems Dual Image Logo Hook -->
         <a href="/" class="flex items-center gap-2">
-          <img src="/logo.png" alt="Vertex Systems Logo" class="h-8 w-auto object-contain" />
-          <img src="/typeface.png" alt="Vertex Systems" class="h-5 w-auto object-contain" />
+          <img src={logoImage.src} alt="Vertex Systems Logo" class="h-8 w-auto object-contain" />
+          <img src={typefaceImage.src}  alt="Vertex Systems" class="h-5 w-auto object-contain" />
         </a>
         <div class="block lg:hidden">
           <!-- Swapped text color to main off-white so menu button is visible on dark backdrops -->
